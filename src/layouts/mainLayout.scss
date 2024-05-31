@@ -1,0 +1,43 @@
+@import "../App.scss";
+
+.handle-layout {
+  .ant-menu-title-content {
+    color: $mainColor;
+    font-weight: 600;
+  }
+  .category {
+    width: calc(100% - 8px);
+    padding-left: 24px;
+    margin-inline: 4px;
+    color: $mainColor;
+    font-weight: 500;
+    font-size: smaller;
+    padding-block: 20px;
+
+    &.others {
+      margin-top: 10px;
+    }
+  }
+
+  .ant-menu-light .ant-menu-submenu-selected > .ant-menu-submenu-title {
+    background-color: $mainColor;
+    color: $whiteColor;
+
+    .ant-menu-title-content {
+      color: $whiteColor;
+    }
+  }
+
+  .ant-menu-item-selected {
+    background-color: $mainColor;
+    color: $whiteColor;
+
+    .ant-menu-title-content {
+      color: $whiteColor;
+    }
+
+    .ant-menu-submenu-title {
+      background-color: $mainColor;
+    }
+  }
+}
