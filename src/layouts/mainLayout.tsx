@@ -10,8 +10,10 @@ import {
   BookOutlined,
   FileUnknownOutlined,
   FileAddOutlined,
+  SearchOutlined,
+  BellOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import { Col, Layout, Menu, Row, Typography, Avatar, Space, Badge } from "antd";
 import "./mainLayout.scss";
 
 interface Props {
@@ -19,6 +21,7 @@ interface Props {
 }
 
 const { Header, Content, Footer, Sider } = Layout;
+const { Title } = Typography;
 
 export default function MainLayout(props: Props) {
   //   const { children } = props;
@@ -85,7 +88,28 @@ export default function MainLayout(props: Props) {
         </Menu>
       </Sider>
       <Layout style={{ marginLeft: 200 }}>
-        <Header style={{ padding: 0, background: "#ffffff" }} />
+        <Header
+          style={{ padding: 0, background: "#ffffff" }}
+          className="header"
+        >
+          <Row>
+            <Col span={18} push={6} className="header_information">
+              <Space size={24} wrap style={{ marginRight: "16px" }}>
+                <Avatar shape="square" size="small" icon={<SearchOutlined />} />
+                <Badge count={1}>
+                  <Avatar shape="square" size="small" icon={<BellOutlined />} />
+                </Badge>
+                <Avatar
+                  size={40}
+                  src="https://toplist.vn/images/800px/bai-van-thuyet-minh-ve-con-meo-so-7-992007.jpg"
+                />
+              </Space>
+            </Col>
+            <Col span={6} pull={18} className="header_title">
+              <Title level={2}>Invoices</Title>
+            </Col>
+          </Row>
+        </Header>
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div
             style={{
