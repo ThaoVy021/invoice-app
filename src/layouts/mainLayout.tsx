@@ -15,6 +15,8 @@ import {
 } from "@ant-design/icons";
 import { Col, Layout, Menu, Row, Typography, Avatar, Space, Badge } from "antd";
 import "./mainLayout.scss";
+import SubMenu from "../components/Menu/SubMenu";
+import MenuItem from "../components/Menu/MenuItem";
 
 interface Props {
   children: ReactNode;
@@ -42,49 +44,55 @@ export default function MainLayout(props: Props) {
         <div className="demo-logo-vertical">
           <img src="/logo.jpeg" alt="logo.jpeg" />
         </div>
-        <Menu theme="light" mode="inline" defaultSelectedKeys={["2"]}>
+        <Menu
+          theme="light"
+          mode="inline"
+          defaultSelectedKeys={["2"]}
+          onClick={(info) => console.log("info", info)}
+          onOpenChange={(openKeys) => console.log("openKeys", openKeys)}
+        >
           <div className="category">Recent</div>
-          <Menu.Item icon={<HomeOutlined />} key={1}>
+          <MenuItem icon={<HomeOutlined />} key={1}>
             Home
-          </Menu.Item>
-          <Menu.SubMenu
-            icon={<BookOutlined />}
-            title="Invoices"
+          </MenuItem>
+          <SubMenu
             key={2}
+            title="Invoices"
+            icon={<BookOutlined />}
             children={[
-              <Menu.Item icon={<FileAddOutlined />} key={3}>
+              <MenuItem icon={<FileAddOutlined />} key={3}>
                 Create New
-              </Menu.Item>,
-              <Menu.Item icon={<FileUnknownOutlined />} key={4}>
+              </MenuItem>,
+              <MenuItem icon={<FileUnknownOutlined />} key={4}>
                 Drafts
-              </Menu.Item>,
+              </MenuItem>,
             ]}
-          ></Menu.SubMenu>
-          <Menu.SubMenu
+          ></SubMenu>
+          <SubMenu
             icon={<UserOutlined />}
             title="Contractors"
             key={5}
-          ></Menu.SubMenu>
-          <Menu.Item icon={<DatabaseOutlined />} key={6}>
+          ></SubMenu>
+          <MenuItem icon={<DatabaseOutlined />} key={6}>
             Products and Services
-          </Menu.Item>
+          </MenuItem>
           <div className="category">Others</div>
-          <Menu.Item icon={<UsergroupAddOutlined />} key={7}>
+          <MenuItem icon={<UsergroupAddOutlined />} key={7}>
             Users
-          </Menu.Item>
-          <Menu.Item icon={<BarChartOutlined />} key={8}>
+          </MenuItem>
+          <MenuItem icon={<BarChartOutlined />} key={8}>
             Statistics
-          </Menu.Item>
-          <Menu.Item
+          </MenuItem>
+          <MenuItem
             icon={<SettingOutlined />}
             key={9}
             style={{ marginTop: "50px" }}
           >
             Settings
-          </Menu.Item>
-          <Menu.Item icon={<InfoCircleOutlined />} key={10}>
+          </MenuItem>
+          <MenuItem icon={<InfoCircleOutlined />} key={10}>
             Help
-          </Menu.Item>
+          </MenuItem>
         </Menu>
       </Sider>
       <Layout style={{ marginLeft: 200 }}>
