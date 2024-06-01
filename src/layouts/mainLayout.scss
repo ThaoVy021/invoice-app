@@ -21,11 +21,21 @@
 
   .ant-menu-light .ant-menu-submenu-selected > .ant-menu-submenu-title {
     background-color: $mainColor;
-    color: $whiteColor;
+    color: inherit;
 
     .ant-menu-title-content {
       color: $whiteColor;
     }
+  }
+
+  .menu-selected {
+    background-color: $mainColor;
+    color: $whiteColor;
+  }
+
+  .menu-no-selected {
+    background-color: inherit;
+    color: inherit;
   }
 
   .ant-menu-item-selected {
@@ -38,6 +48,22 @@
 
     .ant-menu-submenu-title {
       background-color: $mainColor;
+    }
+  }
+
+  .header {
+    .header_information {
+      display: flex;
+      justify-content: end;
+    }
+
+    .header_title {
+      align-self: center;
+      h2 {
+        margin: 0 auto;
+        color: $mainColor;
+        font-family: initial;
+      }
     }
   }
 }
