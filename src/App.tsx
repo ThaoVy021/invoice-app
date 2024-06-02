@@ -10,6 +10,9 @@ function App() {
   return (
     <ConfigProvider
       theme={{
+        token: {
+          boxShadow: "",
+        },
         components: {
           Layout: {
             bodyBg: "#fff",

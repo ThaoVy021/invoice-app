@@ -22,4 +22,18 @@
       object-fit: scale-down;
     }
   }
+
+  .category {
+    width: calc(100% - 8px);
+    padding-left: 24px;
+    margin-inline: 4px;
+    color: $mainColor;
+    font-weight: 500;
+    font-size: smaller;
+    padding-block: 20px;
+
+    &.others {
+      margin-top: 10px;
+    }
+  }
 }
