@@ -1,0 +1,25 @@
+@import "../../App.scss";
+
+.ant-layout-sider {
+  height: 100vh;
+  overflow: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: $whiteColor;
+
+  .logo-wrapper {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    text-align: center;
+
+    img {
+      max-width: 160px;
+      height: auto;
+      object-fit: scale-down;
+    }
+  }
+}

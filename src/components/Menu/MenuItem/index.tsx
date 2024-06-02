@@ -4,17 +4,14 @@ export default function MenuItem(props: MenuItemProps) {
   return (
     <Menu.Item
       {...props}
-      onClick={({}) => {
-        const selectedBefore = document.getElementsByClassName(
-          "ant-menu-submenu-title selected"
-        )[0];
-
-        if (selectedBefore) {
-          selectedBefore.className = selectedBefore?.className.replace(
-            "selected",
-            ""
-          );
+      onClick={(...args) => {
+        const previous = document.getElementsByClassName(
+          "ant-menu-submenu-title ant-menu-submenu-selected"
+        );
+        if (previous.length) {
+          previous[0].classList.remove("ant-menu-submenu-selected");
         }
+        props?.onClick?.(...args);
       }}
     />
   );

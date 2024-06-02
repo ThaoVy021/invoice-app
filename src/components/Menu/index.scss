@@ -1,0 +1,39 @@
+@import "../../App.scss";
+
+.ant-menu.ant-menu-light {
+  border: none !important;
+
+  .ant-menu-submenu-selected
+    > .ant-menu-submenu-title:not(.ant-menu-submenu-selected) {
+    background-color: $whiteColor;
+    color: $mainColor;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  .ant-menu-item,
+  .ant-menu-submenu-title {
+    background-color: $whiteColor;
+    color: $mainColor;
+    .ant-menu-title-content {
+      color: $mainColor;
+      font-weight: 600;
+    }
+  }
+
+  .ant-menu-item.ant-menu-item-selected,
+  .ant-menu-submenu-title.ant-menu-submenu-selected {
+    background-color: $mainColor;
+    color: $whiteColor;
+    .ant-menu-title-content {
+      color: $whiteColor;
+    }
+
+    &:hover {
+      background-color: $mainColor;
+      color: $whiteColor;
+    }
+  }
+}
