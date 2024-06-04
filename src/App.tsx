@@ -10,11 +10,16 @@ function App() {
   return (
     <ConfigProvider
       theme={{
+        token: {
+          colorPrimary: "#00127f",
+          boxShadow: "",
+        },
         components: {
           Layout: {
             bodyBg: "#fff",
           },
           Typography: {
+            colorText: "00127f",
             fontFamily:
               "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
           },
@@ -24,6 +29,9 @@ function App() {
             itemSelectedBg: "#00127f",
             itemSelectedColor: "#fff",
             subMenuItemBg: "#fff",
+          },
+          Dropdown: {
+            colorPrimary: "transparent",
           },
         },
       }}
