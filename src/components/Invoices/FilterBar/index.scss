@@ -1,0 +1,52 @@
+@import "../../../App.scss";
+
+.invoices-tabs {
+  margin-bottom: 24px;
+  .ant-segmented {
+    background: inherit;
+    color: $mainColor;
+    font-weight: 500;
+
+    .ant-segmented-group {
+      gap: 24px;
+
+      .ant-segmented-item {
+        transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+
+      .ant-segmented-item-selected {
+        background-color: $mainBackgroundColor;
+        color: inherit;
+      }
+    }
+  }
+}
+
+.invoices-filter {
+  .ant-select-selector {
+    border-color: inherit !important;
+    background: $mainBackgroundColor !important;
+    color: $lightTextColor !important;
+  }
+
+  .ant-picker-outlined {
+    background: $mainBackgroundColor !important;
+    color: $lightTextColor !important;
+  }
+
+  .ant-picker-outlined:focus-within {
+    border-color: inherit !important;
+  }
+
+  .ant-btn > span {
+    color: $mainColor;
+    display: inline-flex;
+  }
+
+  .filter-more {
+    h5 {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

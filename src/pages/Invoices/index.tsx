@@ -1,10 +1,11 @@
 import React from "react";
 import ContentLayout from "../../layouts/Content";
+import FilterBar from "../../components/Invoices/FilterBar";
 
 export default function Invoices() {
   return (
     <ContentLayout
-      searchBar={<div>Search bar</div>}
+      searchBar={<FilterBar />}
       tableView={
         <div style={{ height: "100%" }}>
           Table view

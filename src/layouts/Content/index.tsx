@@ -1,5 +1,5 @@
 import { Card, Flex } from "antd";
-import { ReactNode, Fragment } from "react";
+import { ReactNode } from "react";
 
 import "./index.scss";
 
