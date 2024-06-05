@@ -2,6 +2,7 @@ import { Card, Flex } from "antd";
 import { ReactNode } from "react";
 
 import "./index.scss";
+import { useLocation } from "react-router-dom";
 
 interface Props {
   searchBar?: ReactNode;
@@ -10,6 +11,9 @@ interface Props {
 }
 
 export default function ContentLayout(props: Props) {
+  const location = useLocation();
+  const footerFixInvoice = location.pathname === "/invoices";
+
   return (
     <Flex
       className="main-content"
@@ -34,7 +38,7 @@ export default function ContentLayout(props: Props) {
           bordered={false}
           style={{
             width: "100%",
-            height: "calc(100vh - 345px)",
+            height: footerFixInvoice ? "calc(100vh - 345px)" : "fit-content",
           }}
         >
           {props.tableView}

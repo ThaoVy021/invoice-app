@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Button, Tag } from "antd";
 import type { TableColumnsType } from "antd";
 import "./index.scss";
@@ -15,6 +15,9 @@ import {
   PrinterOutlined,
 } from "@ant-design/icons";
 import { SortOrder } from "antd/es/table/interface";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/store/store";
+import { getInvoices } from "../../../redux/features/invoices/invoiceSlices";
 
 export function sortIcon(sortOrder: SortOrder) {
   return (
@@ -93,11 +96,17 @@ const columns: TableColumnsType<IInvoice> = [
   },
 ];
 
-export default function Content({ dataSource }: any) {
+export default function InvoicesTable() {
+  const invoices = useSelector((state: RootState) => state.invoices.data);
+  const dispatch = useDispatch();
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
+  useEffect(() => {
+    dispatch(getInvoices({}));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-    console.log("selectedRowKeys changed: ", newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
   };
 
@@ -111,7 +120,7 @@ export default function Content({ dataSource }: any) {
       <Table
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={dataSource}
+        dataSource={invoices}
         size="small"
         pagination={false}
         scroll={{ y: 320 }}
