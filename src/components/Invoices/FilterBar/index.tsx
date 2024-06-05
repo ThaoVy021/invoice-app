@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Col,
   Row,
@@ -14,6 +13,7 @@ import {
   Radio,
   Space,
   Checkbox,
+  Form,
 } from "antd";
 import { TinyColor } from "@ctrl/tinycolor";
 import {
@@ -21,7 +21,6 @@ import {
   FilterFilled,
   PlusCircleOutlined,
 } from "@ant-design/icons";
-import type { RadioChangeEvent } from "antd";
 import {
   billedToList,
   preparedByList,
@@ -43,12 +42,12 @@ const getActiveColors = (colors: string[]) =>
   colors.map((color) => new TinyColor(color).darken(5).toString());
 
 export default function FilterBar() {
-  const [value, setValue] = useState(0);
+  const [form] = Form.useForm();
 
-  const onChange = (e: RadioChangeEvent) => {
-    console.log("Checkbox checked", e.target.value);
-    setValue(e.target.value);
-  };
+  // const onChangeDateFilter = (e: RadioChangeEvent) => {
+  //   console.log("Checkbox checked", e.target.value);
+  //   setValue(e.target.value);
+  // };
 
   const contractorOptions = billedToList.map((e: string) => ({
     value: e,
@@ -79,7 +78,7 @@ export default function FilterBar() {
       >
         <span>Created</span> <DeleteOutlined />
       </Title>
-      <Radio.Group onChange={onChange} value={value}>
+      <Radio.Group>
         <Space direction="vertical">
           <Radio value={1}>All</Radio>
           <Radio value={2}>One day ago</Radio>
@@ -102,7 +101,7 @@ export default function FilterBar() {
 
       <div>
         <Title level={5}>Prepared By</Title>
-        <Radio.Group onChange={onChange} value={value}>
+        <Radio.Group>
           <Space direction="vertical">
             <Checkbox value={"All"}>All</Checkbox>
             {preparedByList.map((preparer) => (
@@ -122,10 +121,17 @@ export default function FilterBar() {
   );
 
   return (
-    <>
+    <Form
+      form={form}
+      onFinish={(values: any) => {
+        console.log(values);
+      }}
+      onFieldsChange={() => {
+        form?.submit();
+      }}
+    >
       <Row justify={"space-between"} align={"middle"} className="invoices-tabs">
         <Col>
-          {" "}
           <Segmented
             defaultValue="center"
             options={["All", "Edit", "Inprogress", "Drafts"]}
@@ -158,29 +164,35 @@ export default function FilterBar() {
       </Row>
       <Row className="invoices-filter">
         <Flex wrap gap="middle">
-          <Select
-            showSearch
-            placeholder="All contractors"
-            optionFilterProp="children"
-            filterOption={filterOption}
-            options={contractorOptions}
-          />{" "}
-          <Select
-            showSearch
-            placeholder="VAT"
-            optionFilterProp="children"
-            filterOption={filterOption}
-            options={optionsVAT}
-          />{" "}
+          <Form.Item name={"billedBy"}>
+            <Select
+              showSearch
+              placeholder="All contractors"
+              optionFilterProp="children"
+              filterOption={filterOption}
+              options={contractorOptions}
+            />
+          </Form.Item>
+          <Form.Item name={"isVAT"}>
+            <Select
+              showSearch
+              placeholder="VAT"
+              optionFilterProp="children"
+              filterOption={filterOption}
+              options={optionsVAT}
+            />
+          </Form.Item>
           <DatePicker placeholder="From" />
           <DatePicker placeholder="To" />
-          <Select
-            showSearch
-            placeholder="All Status"
-            optionFilterProp="children"
-            filterOption={filterOption}
-            options={optionsStatus}
-          />{" "}
+          <Form.Item name={"status"}>
+            <Select
+              showSearch
+              placeholder="All Status"
+              optionFilterProp="children"
+              filterOption={filterOption}
+              options={optionsStatus}
+            />
+          </Form.Item>
           <Popover content={optionsMore} trigger="click">
             <Button>
               More <FilterFilled />
@@ -188,6 +200,6 @@ export default function FilterBar() {
           </Popover>
         </Flex>
       </Row>
-    </>
+    </Form>
   );
 }

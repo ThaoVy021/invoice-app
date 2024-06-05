@@ -32,7 +32,10 @@ export default function ContentLayout(props: Props) {
         <Card
           className="table-view"
           bordered={false}
-          style={{ width: "100%", overflow: "scroll" }}
+          style={{
+            width: "100%",
+            height: "calc(100vh - 345px)",
+          }}
         >
           {props.tableView}
         </Card>
