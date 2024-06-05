@@ -1,0 +1,7 @@
+@import "../../../App.scss";
+
+.content-invoices {
+  .ant-table-wrapper .ant-table-thead > tr > th {
+    background: $whiteColor;
+  }
+}

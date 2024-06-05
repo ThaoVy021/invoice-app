@@ -26,7 +26,7 @@
   .ant-select-selector {
     border-color: inherit !important;
     background: $mainBackgroundColor !important;
-    color: $lightTextColor !important;
+    color: $mainColor !important;
   }
 
   .ant-picker-outlined {
@@ -36,6 +36,10 @@
 
   .ant-picker-outlined:focus-within {
     border-color: inherit !important;
+  }
+
+  .ant-form-item {
+    margin-bottom: 0;
   }
 
   .ant-btn > span {
