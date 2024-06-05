@@ -1,7 +1,8 @@
-import { Button, Col, Divider, Row, message } from "antd";
+import { Button, Col, Divider, Row, Typography, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/store";
 import { addInvoice } from "../../../redux/features/invoices/invoiceSlices";
+import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
 
 export default function Footer() {
   const newInvoices = useSelector((state: RootState) => state.newInvoice);
@@ -33,21 +34,53 @@ export default function Footer() {
     );
 
     message.success("Create new invoice is successfully!");
+
+    emailjs
+      .send(
+        "service_i7fnmgk",
+        "template_gc2h58b",
+        {
+          sendTo: "thaovyluuthanh@gmail.com",
+          sender: "Thao Vy",
+          billedTo: billedTo,
+          invoiceDate: invoiceDate,
+          status: isDraft ? "Drafts" : "Paid",
+          VAT: newInvoices.vat,
+          preparedBy: preparedBy,
+        },
+        "g3ukIcsb_jLDAbXD1"
+      )
+      .then((response) => {
+        message.success("Send email is successful!");
+        console.log("send mail response", response);
+      })
+      .catch((error) => {
+        message.error("Send email is failed!");
+        console.log("send mail error", error);
+      });
   };
 
   return (
-    <Row justify={"space-between"}>
+    <Row justify={"space-between"} align={"middle"}>
       <Col>
         <Row gutter={10}>
-          <Col>Tax base: {newInvoices.taxBase}</Col>
+          <Col>
+            <Typography.Text>
+              Tax base: {newInvoices.taxBase} BRN
+            </Typography.Text>
+          </Col>
           <Col>
             <Divider type="vertical" />
           </Col>
-          <Col>VAT: {newInvoices.vat}</Col>
+          <Col>
+            <Typography.Text>VAT: {newInvoices.vat} BRN</Typography.Text>
+          </Col>
           <Col>
             <Divider type="vertical" />
           </Col>
-          <Col>Total: {newInvoices.total}</Col>
+          <Col>
+            <Typography.Text>Total: {newInvoices.total} BRN</Typography.Text>
+          </Col>
         </Row>
       </Col>
       <Col>
