@@ -2,7 +2,7 @@ import { Button, Col, Divider, Row, Typography, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store/store";
 import { addInvoice } from "../../../redux/features/invoices/invoiceSlices";
-import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 
 export default function Footer() {
   const newInvoices = useSelector((state: RootState) => state.newInvoice);
