@@ -1,0 +1,47 @@
+@import "../../../App.scss";
+
+.create-new-filter {
+  .ant-col {
+    width: 100%;
+    .ant-flex {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+
+      &:nth-last-child(1) {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .ant-select-selector {
+    border-color: inherit !important;
+    background: $mainBackgroundColor !important;
+    color: $mainColor !important;
+  }
+
+  .ant-picker-outlined {
+    background: $mainBackgroundColor !important;
+    color: $lightTextColor !important;
+    width: 100%;
+  }
+
+  .ant-input-outlined {
+    background: $mainBackgroundColor !important;
+    color: $lightTextColor !important;
+  }
+
+  .ant-picker-outlined:focus-within {
+    border-color: inherit !important;
+  }
+
+  .ant-input-outlined:focus-within {
+    border-color: inherit !important;
+    background: $mainBackgroundColor !important;
+    color: $mainColor !important;
+  }
+
+  .ant-form-item {
+    margin-bottom: 0;
+    flex: 1;
+  }
+}

@@ -32,14 +32,21 @@
   .ant-picker-outlined {
     background: $mainBackgroundColor !important;
     color: $lightTextColor !important;
+    flex: 1;
   }
 
   .ant-picker-outlined:focus-within {
     border-color: inherit !important;
   }
 
+  .ant-flex {
+    justify-content: space-between;
+    width: 100%;
+  }
+
   .ant-form-item {
     margin-bottom: 0;
+    flex: 1;
   }
 
   .ant-btn > span {

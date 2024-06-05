@@ -1,0 +1,40 @@
+@import "../../../App.scss";
+
+.content-invoices {
+  .ant-table-wrapper .ant-table-thead > tr > th {
+    background: $whiteColor;
+  }
+  .ant-table-wrapper
+    .ant-table-tbody
+    .ant-table-row.ant-table-row-selected
+    > .ant-table-cell {
+    background: $mainBackgroundColor;
+  }
+
+  .ant-table-wrapper .ant-table-thead > tr > th {
+    border-bottom: 1px solid $mainColor;
+    color: $mainColor;
+    font-weight: 800;
+  }
+
+  .ant-table-wrapper
+    .ant-table-thead
+    > tr
+    > th:not(:last-child):not(.ant-table-selection-column):not(
+      .ant-table-row-expand-icon-cell
+    ):not([colspan])::before {
+    background-color: transparent;
+  }
+
+  .ant-table-wrapper .ant-table.ant-table-small .ant-table-tbody > tr > td {
+    padding: 16px;
+    color: $mainColor;
+  }
+  .ant-table-wrapper
+    .ant-table.ant-table-small
+    .ant-table-tbody
+    > tr
+    > td:nth-child(1) {
+    padding-left: 8px;
+  }
+}

@@ -1,0 +1,5 @@
+.ant-pagination.show-size-change-only {
+  li:not(.ant-pagination-options) {
+    display: none !important;
+  }
+}

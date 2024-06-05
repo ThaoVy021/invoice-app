@@ -17,7 +17,7 @@ import {
 } from "antd";
 import { TinyColor } from "@ctrl/tinycolor";
 import {
-  DeleteOutlined,
+  CloseOutlined,
   FilterFilled,
   PlusCircleOutlined,
 } from "@ant-design/icons";
@@ -27,6 +27,10 @@ import {
   statusList,
 } from "../../../mockData/Invoices/InvoicesData";
 import "./index.scss";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getInvoices } from "../../../redux/features/invoices/invoiceSlices";
+import { useNavigate } from "react-router";
 
 const { Title } = Typography;
 
@@ -41,13 +45,12 @@ const getHoverColors = (colors: string[]) =>
 const getActiveColors = (colors: string[]) =>
   colors.map((color) => new TinyColor(color).darken(5).toString());
 
-export default function FilterBar() {
-  const [form] = Form.useForm();
+export default function InvoicesFilterBar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // const onChangeDateFilter = (e: RadioChangeEvent) => {
-  //   console.log("Checkbox checked", e.target.value);
-  //   setValue(e.target.value);
-  // };
+  const [openMoreFilter, setOpenMoreFilter] = useState(false);
+  const [form] = Form.useForm();
 
   const contractorOptions = billedToList.map((e: string) => ({
     value: e,
@@ -70,14 +73,19 @@ export default function FilterBar() {
     label: e,
   }));
 
+  const onChangeFilter = (values: any) => {
+    console.log("values", values);
+    dispatch(getInvoices({ ...values }));
+  };
+
   const optionsMore = (
     <div className="filter-more">
-      <Title
-        level={5}
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
-        <span>Created</span> <DeleteOutlined />
-      </Title>
+      <Row justify={"space-between"} align={"middle"}>
+        <Title level={5}>
+          <span>Created</span>
+        </Title>
+        <CloseOutlined onClick={() => setOpenMoreFilter(false)} />
+      </Row>
       <Radio.Group>
         <Space direction="vertical">
           <Radio value={1}>All</Radio>
@@ -123,9 +131,7 @@ export default function FilterBar() {
   return (
     <Form
       form={form}
-      onFinish={(values: any) => {
-        console.log(values);
-      }}
+      onFinish={onChangeFilter}
       onFieldsChange={() => {
         form?.submit();
       }}
@@ -156,7 +162,14 @@ export default function FilterBar() {
               },
             }}
           >
-            <Button type="primary" size="middle" icon={<PlusCircleOutlined />}>
+            <Button
+              type="primary"
+              size="middle"
+              icon={<PlusCircleOutlined />}
+              onClick={() => {
+                navigate("/invoices/create");
+              }}
+            >
               Create a new invoice
             </Button>
           </ConfigProvider>
@@ -193,8 +206,8 @@ export default function FilterBar() {
               options={optionsStatus}
             />
           </Form.Item>
-          <Popover content={optionsMore} trigger="click">
-            <Button>
+          <Popover open={openMoreFilter} content={optionsMore}>
+            <Button onClick={() => setOpenMoreFilter(true)}>
               More <FilterFilled />
             </Button>
           </Popover>

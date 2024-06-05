@@ -1,0 +1,14 @@
+@import "../../../App.scss";
+
+.content-invoices {
+  .ant-table-wrapper .ant-table-thead > tr > th {
+    background: $whiteColor;
+  }
+
+  .ant-table-wrapper
+    .ant-table-tbody
+    .ant-table-row.ant-table-row-selected
+    > .ant-table-cell {
+    background: $mainBackgroundColor;
+  }
+}

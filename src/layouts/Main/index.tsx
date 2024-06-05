@@ -5,6 +5,7 @@ import { Col, Layout, Row, Typography, Avatar, Space, Badge } from "antd";
 import SideBar from "../../components/SideBar";
 
 import "./index.scss";
+import { useLocation } from "react-router";
 
 interface Props {
   children: ReactNode;
@@ -13,7 +14,15 @@ interface Props {
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
+const mappingPathname: any = {
+  "/": "Home",
+  "/invoices": "Invoices",
+  "/invoices/create": "Create new invoice",
+};
+
 export default function MainLayout(props: Props) {
+  const { pathname } = useLocation();
+
   return (
     <Layout hasSider className="handle-layout">
       <SideBar />
@@ -21,7 +30,7 @@ export default function MainLayout(props: Props) {
         <Header className="header">
           <Row>
             <Col span={14} className="header_title">
-              <Title level={2}>Invoices</Title>
+              <Title level={2}>{mappingPathname[pathname] ?? ""}</Title>
             </Col>
             <Col span={10} className="header_information">
               <Space size={24} wrap style={{ marginRight: "16px" }}>

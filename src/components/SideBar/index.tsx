@@ -15,7 +15,7 @@ import {
 import SubMenu from "../../components/Menu/SubMenu";
 import MenuItem from "../../components/Menu/MenuItem";
 import Menu from "../../components/Menu";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 import "./index.scss";
 
@@ -23,6 +23,7 @@ const { Sider } = Layout;
 
 export default function SideBar() {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   return (
     <Sider theme="light">
@@ -32,7 +33,7 @@ export default function SideBar() {
       <Menu
         theme="light"
         mode="inline"
-        defaultSelectedKeys={["2"]}
+        selectedKeys={[pathname]}
         onClick={({ key }) => {
           navigate(key);
         }}
@@ -60,10 +61,7 @@ export default function SideBar() {
         <SubMenu
           icon={<UserOutlined />}
           title="Contractors"
-          key={"contractors"}
-          // onTitleClick={() => {
-          //   navigate("contractors");
-          // }}
+          key={"/contractors"}
           children={[
             <MenuItem icon={<FileAddOutlined />} key={"/contractors/create"}>
               Create New
@@ -76,13 +74,7 @@ export default function SideBar() {
             </MenuItem>,
           ]}
         ></SubMenu>
-        <MenuItem
-          icon={<DatabaseOutlined />}
-          key={"/products"}
-          // onClick={() => {
-          //   navigate("test");
-          // }}
-        >
+        <MenuItem icon={<DatabaseOutlined />} key={"/products"}>
           Products and Services
         </MenuItem>
         <div className="category">Others</div>
